@@ -1,0 +1,151 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh18000\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs26 \cf0 \expnd0\expndtw0\kerning0
+var mapFunc = function() \{\
+    emit(this.details.c_id, this.details.qty);\
+\};\
+\
+var reduceFunc = function(key, value) \{\
+    return Array.sum(value);\
+\};\
+\
+db.orders.mapReduce(\
+    mapFunc,\
+    reduceFunc,\
+    \{out : "output_mr"\}\
+)\
+\
+// Recommended\
+db.orders.aggregate([\
+    \{$group : \{_id : "$details.c_id", value : \{$sum : "$details.qty"\}\}\},\
+    \{$out : "output_mr"\}\
+])\
+\
+// internal working : \
+db.orders.aggregate([\
+    \{\
+        $project : \{\
+            emit : \{\
+                key : "$details.c_id",\
+                value : "$details.qty"\
+            \}\
+        \}\
+    \},\
+    \{\
+        $group : \{\
+            _id : "$emit.key",\
+            value : \{\
+                $accumulator : \{\
+                    init : function() \{return 0;\},\
+                    initArgs : [],\
+                    accumulate : function(state, value) \{\
+                        return state + value;\
+                    \},\
+                    accumulateArgs : ["$emit.value"],\
+                    merge : function(state1, state2) \{\
+                        return state1 + state2;\
+                    \},\
+                    lang : "js"\
+                \}\
+            \}\
+        \}\
+    \},\
+    \{\
+        $out : "output_mr"\
+    \}\
+])\
+\
+\
+var mapFunc = function() \{\
+    for(var i = 0; i < this.answer.length; i++) \{\
+        var key = this.answer[i].userid;\
+        var value = \{\
+            count : 1, qty : this.answer[i].likes\
+        \};\
+        emit(key, value);\
+    \}\
+\}\
+\
+/*\
+var reduceFunc = function(key, value) \{\
+    reducedVal = \{\
+        count : 0,\
+        qty : 0\
+    \};\
+    for(var i = 0; i < value.length; i++) \{\
+        reduceVal.count += value[i].count;\
+        reducedVal.qty += value[i].qty;\
+    \}\
+    return reducedVal;\
+\}\
+\
+*/\
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf0 var reduceFunc = function(key, value) \{\
+    reducedVal = \{\
+        count : 0,\
+        qty : 0\
+    \};\
+    for(var i = 0; i < value.length; i++) \{\
+        reducedVal.count += value[i].count;\
+        reducedVal.qty += value[i].qty;\
+    \}\
+    return reducedVal;\
+\}\
+\
+var finalizeFunc = function(key, reducedVal) \{\
+    reducedVal.avg = reducedVal.qty / reducedVal.count;\
+    return reducedVal; \
+\}\
+\
+db.answer.mapReduce(\
+    mapFunc,\
+    reduceFunc,\
+    \{\
+        out : "output_mr",\
+        finalize : finalizeFunc\
+    \}\
+)\
+\
+\
+\
+// output : \
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs24 \cf0 \kerning1\expnd0\expndtw0 {{\NeXTGraphic Screenshot 2021-09-28 at 12.17.41 PM.png \width28800 \height13640 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}
+\f0\fs26 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs24 \cf0 \kerning1\expnd0\expndtw0 {{\NeXTGraphic Screenshot 2021-09-28 at 12.17.45 PM.png \width22080 \height4500 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\
+// now convert this above statement into the aggregate cmd : \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs26 \cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\
+\
+}

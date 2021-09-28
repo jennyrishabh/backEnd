@@ -1,0 +1,231 @@
+//customers details : 
+
+[
+    {
+        "c_id" : "c_101",
+        "name" : "John",
+        "phone" : 8989889989,
+        "details" : {
+            "email" : "john12@gmail.com",
+            "address" : "Delhi"
+        }
+    },
+    {
+        "id" : "c_102",
+        "name" : "Mac",
+        "phone" : 8985523443,
+        "details" : {
+            "email" : "mac12@gmail.com",
+            "address" : "Pune"
+        }
+    },
+     {
+        "id" : "c_103",
+        "name" : "steve",
+        "phone" : 8985580000,
+        "details" : {
+            "email" : "steve12@gmail.com",
+            "address" : "mumbai"
+        }
+    },
+     {
+        "id" : "c_104",
+        "name" : "smith",
+        "phone" : 8985589989,
+        "details" : {
+            "email" : "smith12@gmail.com",
+            "address" : "gwl"
+        }
+    }
+]
+
+
+
+
+// products : 
+
+
+[
+    {
+        "p_id" : 101,
+        "p_name" : "Apple Macbook Pro",
+        "p_brand" : "Apple",
+        "p_category" : "Laptop",
+        "p_details" : {
+            "p_rating" : 4.5,
+            "p_specs" : [
+                {
+                    "ram" : "8gb",
+                    "sdd/hdd" : 256,
+                    "p_price" : 88000,
+                    "p_available" : 15
+                },
+                {
+                    "ram" : "16gb",
+                    "sdd/hdd" : 512,
+                    "p_price" : 108000,
+                    "p_available" : 10
+                },
+                {
+                    "ram" : "16gb",
+                    "sdd/hdd" : 1024,
+                    "p_price" : 128000,
+                    "p_available" : 5
+                }
+            ]
+        }
+    },
+
+    {
+        "p_id" : 102,
+        "p_name" : "One Plus 9T",
+        "p_brand" : "One Plus",
+        "p_category" : "Mobile",
+        "p_details" : {
+            "p_rating" : 4.5,
+            "p_specs" : [
+                {
+                    "ram" : "8gb",
+                    "sdd/hdd" : 256,
+                    "p_price" : 88000,
+                    "p_available" : 15
+                },
+                {
+                    "ram" : "16gb",
+                    "sdd/hdd" : 512,
+                    "p_price" : 108000,
+                    "p_available" : 10
+                },
+                {
+                    "ram" : "16gb",
+                    "sdd/hdd" : 1024,
+                    "p_price" : 128000,
+                    "p_available" : 5
+                }
+            ]
+        }
+    } ,
+      {
+        "p_id" : 103,
+        "p_name" : "Mi",
+        "p_brand" : "Xiomi",
+        "p_category" : "Mobile",
+        "p_details" : {
+            "p_rating" : 4.5,
+            "p_specs" : [
+                {
+                    "ram" : "8gb",
+                    "sdd/hdd" : 256,
+                    "p_price" : 88000,
+                    "p_available" : 15
+                },
+                {
+                    "ram" : "16gb",
+                    "sdd/hdd" : 512,
+                    "p_price" : 108000,
+                    "p_available" : 10
+                }
+            ]
+        }
+    } ,
+      {
+        "p_id" : 104,
+        "p_name" : "One Plus 3T",
+        "p_brand" : "One Plus",
+        "p_category" : "Mobile",
+        "p_details" : {
+            "p_rating" : 4,
+            "p_specs" : [
+                {
+                    "ram" : "8gb",
+                    "sdd/hdd" : 216,
+                    "p_price" :40000,
+                    "p_available" : 15
+                }
+            ]
+        }
+    } , 
+     {
+        "p_id" : 105,
+        "p_name" : "inspiron",
+        "p_brand" : "Dell",
+        "p_category" : "Laptop",
+        "p_details" : {
+            "p_rating" : 5,
+            "p_specs" : [
+                {
+                    "ram" : "8gb",
+                    "sdd/hdd" : 256,
+                    "p_price" : 88000,
+                    "p_available" : 15
+                },
+                {
+                    "ram" : "16gb",
+                    "sdd/hdd" : 512,
+                    "p_price" : 108000,
+                    "p_available" : 10
+                }
+            ]
+        }
+    }
+]
+
+
+
+
+// orderes : 
+
+
+
+
+[
+    {
+        "o_id" : "o_101",
+        "details" : 
+            {
+                "c_id" : "c_101",
+                "p_id" : 101,
+                "qty" : 1
+            }
+    },
+    {
+        "o_id" : "o_102",
+        "details" : 
+            {
+                "c_id" : "c_101",
+                "p_id" : 102,
+                "qty" : 2
+            }
+    } , 
+     {
+        "o_id" : "o_103",
+        "details" : 
+            {
+                "c_id" : "c_103",
+                "p_id" : 105,
+                "qty" : 1
+            }
+    } , 
+     {
+        "o_id" : "o_104",
+        "details" : 
+            {
+                "c_id" : "c_104",
+                "p_id" : 102,
+                "qty" : 3
+            }
+    }, 
+    {
+        "o_id" : "o_105",
+        "details" : 
+            {
+                "c_id" : "c_102",
+                "p_id" : 104,
+                "qty" : 4
+            }
+    }
+
+]
+
+
+
